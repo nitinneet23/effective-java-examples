@@ -1,0 +1,254 @@
+Below all steps we have completed. Steps are committed in all microservices pom.xml.
+
+
+
+Integrating Jacoco Code coverage plugin for Code coverage and Issues(Blocker, Major, Critical) for Maven Single Module Project:
+
+
+
+Adding Jacoco Plugin steps to pom.xml:
+
+
+
+Adding Sonar Config to our host URL: 
+
+<profiles>
+
+		<profile>
+
+			<id>sonar</id>
+
+			<activation>
+
+				<activeByDefault>true</activeByDefault>
+
+			</activation>
+
+			<properties>
+
+				<sonar.host.url>
+
+					http://sonarqube-sonar-jenkins-intigration.192.168.64.7.nip.io/
+
+				</sonar.host.url>
+
+			</properties>
+
+		</profile>
+
+	</profiles>
+
+
+
+Adding Jacoco maven plugin to pom.xml:
+
+<build>
+
+	<!-- JaCoCo configuration -->
+
+	<plugin>
+
+			<groupId>org.jacoco</groupId>
+
+			<artifactId>jacoco-maven-plugin</artifactId>
+
+			<version>0.7.5.201505241946</version>
+
+			<executions>
+
+					<execution>
+
+							<id>default-prepare-agent</id>
+
+							<goals>
+
+								<goal>prepare-agent</goal>
+
+							</goals>
+
+					</execution>
+
+					<execution>
+
+							<id>default-report</id>
+
+							<phase>prepare-package</phase>
+
+							<goals>
+
+								<goal>report</goal>
+
+							</goals>
+
+					</execution>
+
+				</executions>
+
+		</plugin>
+
+	</plugins>
+
+</build>
+
+
+
+
+
+Adding Jacoco Properties to pom.xml:
+
+<properties>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<java.version>1.8</java.version>
+
+		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+
+		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+
+		<sonar.jacoco.reportPaths>${project.basedir}/target/jacoco.exec</sonar.jacoco.reportPaths>
+
+</properties>
+
+
+
+Adding Jacoco maven plugin to dependencies to pom.xml:
+
+<dependencies>
+
+		<dependency>
+
+				<groupId>org.jacoco</groupId>
+
+				<artifactId>jacoco-maven-plugin</artifactId>
+
+				<version>0.7.5.201505241946</version>
+
+		</dependency>
+
+</dependencies>
+
+
+
+Integrating Jacoco Code coverage plugin for Code coverage and Issues(Blocker, Major, Critical) for Maven Multi Module Project:
+
+
+
+Adding Sonar Config for our host URL: 
+
+<profiles>
+
+		<profile>
+
+			<id>sonar</id>
+
+			<activation>
+
+				<activeByDefault>true</activeByDefault>
+
+			</activation>
+
+			<properties>
+
+				<sonar.host.url>
+
+					http://sonarqube-sonar-jenkins-intigration.192.168.64.7.nip.io/
+
+				</sonar.host.url>
+
+			</properties>
+
+		</profile>
+
+	</profiles>
+
+
+
+Adding Jacoco maven plugin to pom.xml:
+
+<build>
+
+	<!-- JaCoCo configuration -->
+
+	<plugin>
+
+			<groupId>org.jacoco</groupId>
+
+			<artifactId>jacoco-maven-plugin</artifactId>
+
+			<version>0.7.8</version>
+
+			<executions>
+
+					<execution>
+
+							<id>default-prepare-agent</id>
+
+							<goals>
+
+								<goal>prepare-agent</goal>
+
+							</goals>
+
+					</execution>
+
+					<execution>
+
+							<id>report-aggregate</id>
+
+							<phase>prepare-package</phase>
+
+							<goals>
+
+								<goal>report-aggregate</goal>
+
+							</goals>
+
+					</execution>
+
+				</executions>
+
+		</plugin>
+
+	</plugins>
+
+</build>
+
+
+
+
+
+Adding Jacoco Properties to pom.xml:
+
+<properties>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<java.version>1.8</java.version>
+
+		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+
+		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+
+		<sonar.jacoco.reportPaths>${project.basedir}/target/jacoco.exec</sonar.jacoco.reportPaths>
+
+</properties>
+
+
+
+Adding Jacoco maven plugin to dependencies to pom.xml:
+
+<dependencies>
+
+		<dependency>
+
+				<groupId>org.jacoco</groupId>
+
+				<artifactId>jacoco-maven-plugin</artifactId>
+
+				<version>0.7.8</version>
+
+		</dependency>
+
+</dependencies>
+
