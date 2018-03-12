@@ -11,6 +11,13 @@
         <name>Joshua Bloch</name>
         <url>http://java.sun.com/docs/books/effective/index.html</url>
     </organization>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.8</java.version>
+        <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+        <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+        <sonar.jacoco.reportPaths>${project.basedir}/target/jacoco.exec</sonar.jacoco.reportPaths>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -18,7 +25,25 @@
             <version>3.8.1</version>
             <scope>test</scope>
         </dependency>
+	    <dependency>
+		    <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+			<version>0.7.5.201505241946</version>
+		</dependency>
     </dependencies>
+    <profiles>
+            <profile>
+            <id>sonar</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <sonar.host.url>
+                    http://sonarqube-sonar-jenkins-intigration.192.168.64.7.nip.io/
+                </sonar.host.url>
+            </properties>
+        </profile>
+    </profiles>
     <build>
         <plugins>
             <plugin>
@@ -28,105 +53,21 @@
                     <target>1.7</target>
                 </configuration>
             </plugin>
+            <!-- JaCoCo configuration -->
+
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.7.8</version>
+                <executions>
+                    <execution>
+                            <id>default-prepare-agent</id>
+                            <goals>
+                                <goal>prepare-agent</goal>
+                            </goals>
+                    </execution>
+                <executions>
+            </plugin>
         </plugins>
-    </build>
-         <profiles>
-
-		<profile>
-
-			<id>sonar</id>
-
-			<activation>
-
-				<activeByDefault>true</activeByDefault>
-
-			</activation>
-
-			<properties>
-
-				<sonar.host.url>
-
-					http://sonarqube-sonar-jenkins-intigration.192.168.64.7.nip.io/
-
-				</sonar.host.url>
-
-			</properties>
-
-		</profile>
-
-	</profiles>
-         <build>
-
-	<!-- JaCoCo configuration -->
-
-	<plugin>
-
-			<groupId>org.jacoco</groupId>
-
-			<artifactId>jacoco-maven-plugin</artifactId>
-
-			<version>0.7.5.201505241946</version>
-
-			<executions>
-
-					<execution>
-
-							<id>default-prepare-agent</id>
-
-							<goals>
-
-								<goal>prepare-agent</goal>
-
-							</goals>
-
-					</execution>
-
-					<execution>
-
-							<id>default-report</id>
-
-							<phase>prepare-package</phase>
-
-							<goals>
-
-								<goal>report</goal>
-
-							</goals>
-
-					</execution>
-
-				</executions>
-
-		</plugin>
-
-	</plugins>
-
-</build>
-<properties>
-
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-		<java.version>1.8</java.version>
-
-		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
-
-		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-
-		<sonar.jacoco.reportPaths>${project.basedir}/target/jacoco.exec</sonar.jacoco.reportPaths>
-
-</properties>
-<dependencies>
-
-		<dependency>
-
-				<groupId>org.jacoco</groupId>
-
-				<artifactId>jacoco-maven-plugin</artifactId>
-
-				<version>0.7.5.201505241946</version>
-
-		</dependency>
-
-</dependencies>
-
+	</build>
 </project>
