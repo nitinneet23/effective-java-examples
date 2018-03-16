@@ -18,7 +18,7 @@ class Analysis {
 
 void codeanalysis(){   
   this.script.stage ('SonarQube Analysis') {
-    this.script.sh "${scannerHome}/bin/sonar-scanner"
+    this.script.sh "mvn clean package sonar:sonar"
     }
 }
 }
