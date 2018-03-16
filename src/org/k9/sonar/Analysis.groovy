@@ -18,7 +18,7 @@ class Analysis {
 
 void codeanalysis(){   
   this.script.stage ('SonarQube Analysis') {
-    this.script.sh "sonar:sonar"
+    this.script.sh "mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar"
     }
 }
 }
